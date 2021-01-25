@@ -112,11 +112,11 @@ def blog():
     if build_dir.exists():
         shutil.rmtree(build_dir)
 
-    with open(build_dir / "CNAME", "w") as f:
-        f.write("brntn.me")
-
     # public: copy public files to the build directory
     shutil.copytree(public_dir, build_dir)
+
+    with open(build_dir / "CNAME", "w") as f:
+        f.write("brntn.me")
 
     # static: copy static files from the theme
     shutil.copytree(theme_dir / "static", build_dir / "static", dirs_exist_ok=True)

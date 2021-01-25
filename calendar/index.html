@@ -1,0 +1,89 @@
+<!doctype html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<title>Quick Printable Calendar</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  @media print {
+    label {
+      display: none;
+    }
+  }
+  @page { size: auto;  margin: 0mm; }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Work Sans';
+    color: #343a40;
+    font-size: 0.9em;
+  }
+
+  h1, h2 {
+    font-weight: 700;
+    font-size: 4em;
+    text-align: right;
+  }
+
+  h2 {
+    font-size: 2em;
+    font-weight: 400;
+  }
+
+  main {
+    width: 100%;
+    max-width: 80em;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  #cal .dayLabel {
+    padding: 8px;
+    width: 14.28%;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  #cal .day {
+    position: relative;
+    padding: 8px;
+    width: 14.28%;
+    display: inline-block;
+    border-left: 1px solid #343a40;
+    border-top: 1px solid #343a40;
+    height: 7em;
+    text-align: right;
+  }
+
+  #cal .day:nth-child(7n) {
+    border-right: 1px solid #343a40;
+  }
+
+  #cal .last-week {
+    border-bottom: 1px solid #343a40;
+  }
+</style>
+
+
+
+<main>
+  <label>Start Date:
+    <input type="date" id="start">
+  </label>
+  <h2>1999</h2>
+  <h1>January</h1>
+</main>
+
+<script src="calendarize.js"></script>
+<script src="script.js"></script>

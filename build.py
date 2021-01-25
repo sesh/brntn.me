@@ -3,12 +3,15 @@ import glob
 from pathlib import Path
 import shutil
 from datetime import datetime
+import subprocess
 
 import commonmark
 
 
 PAGE_TEMPLATE = open("theme/page.html", "r").read()
 POST_TEMPLATE = open("theme/post.html", "r").read()
+
+STATIC_SITES = [("/calendar/", "https://github.com/sesh/calendar.git")]
 
 
 def chunks(lst, n):
@@ -54,12 +57,14 @@ def load_post(fn):
         print(f"Missing published time for {fn}")
         return None
 
+    if headers["slug"].startswith("/"):
+        headers["slug"] = headers["slug"][1:]
+
     headers["permalink"] = "/" + headers["slug"]
     headers["published_formatted"] = datetime.fromisoformat(
         headers["published"].replace("Z", "")
     ).strftime("%B %d, %Y")
 
-    print(headers["published_formatted"], headers["published"])
     return (headers, rendered)
 
 
@@ -100,6 +105,11 @@ def render_post_list(posts, *, build_dir):
             f.write(render_template(PAGE_TEMPLATE, content=output))
 
 
+def clone_repo(repo, path):
+    output = subprocess.run(["git", "clone", repo, path], check=True)
+    print(output)
+
+
 def blog():
     p = Path(".")
 
@@ -120,6 +130,13 @@ def blog():
 
     # static: copy static files from the theme
     shutil.copytree(theme_dir / "static", build_dir / "static", dirs_exist_ok=True)
+
+    # clone static sites
+    for slug, repo in STATIC_SITES:
+        if slug.startswith("/"):
+            slug = slug[1:]
+
+        clone_repo(repo, build_dir / slug)
 
     # load all posts, filter out pad posts and sort by published date
     posts = [load_post(str(f)) for f in content_dir.rglob("*.md")]

@@ -11,7 +11,7 @@ A smattering of content I've created over the last few years.
 - (2018) [Test Driven Development with Django](https://sesh.github.io/django-tdd/) workshop at DjangoCon Europe
 - (2018) [Introduction to Infrastructure on AWS](https://sesh.github.io/tw-aws-super-friyay/slides/#0) for Super Friday at Thoughtworks Melbourne
 - (2018) [User-Driven API Development](https://github.com/sesh/api-talk-march-2018/blob/master/User_APIs.md) talk at DevOps Melbourne
-- (2018) [Django URLs 2.0](/2018/1/28/59) talk at MelbDjango
+- (2018) [Django URLs 2.0](/2018/01/28/59) talk at MelbDjango
 - (2017) [Learning Django URL Patterns by Example](/2017/10/15/50)
 - (2017) [So that's it!](https://twitter.com/sesh/status/916458668522070017) (on leaving Common Code)
 - (2017) [basehtml.xyz](https://github.com/sesh/basehtml) - the tiny starting template I use for _every_ web project

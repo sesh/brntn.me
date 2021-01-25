@@ -84,9 +84,11 @@ def render_post(headers, content, *, build_dir):
 
 
 def render_post_list(posts, *, build_dir):
-    # TODO: Pagination
     fn = build_dir / "posts"
     fn.mkdir(parents=True, exist_ok=True)
+
+    next_url = ""
+    previous_url = ""
 
     for i, chunk in enumerate(chunks(posts, 5)):
         output = ""
@@ -101,8 +103,21 @@ def render_post_list(posts, *, build_dir):
         else:
             out_fn = fn / f"page-{i}.html"
 
+        next_url = str(fn / f"page-{i + 1}.html").replace(str(build_dir), "")
+
+        output += "<div class='pagination'>"
+        if previous_url:
+            output += f"<a href='{previous_url}'>&larr; Previous</a>"
+
+        if next_url:
+            output += f"<a href='{next_url}'>Next &rarr;</a>"
+        output += "</div>"
+
         with open(out_fn, "w") as f:
             f.write(render_template(PAGE_TEMPLATE, content=output))
+
+
+        previous_url = str(out_fn).replace(str(build_dir), "")
 
 
 def clone_repo(repo, path):

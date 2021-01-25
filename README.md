@@ -8,10 +8,11 @@ A simple static-site generator powering my personal site.
 4. Host the `_build` directory somewhere
 
 
-## Metadata
+## Content Metadata
 
 The files in the `content` directory can have the following metadata:
 
 - `slug`: represents the URL path that this file should be served from
 - `title`: the title of the post to be used on the Posts page
 - `published`: an ISO formatted date time representing when this post was published
+- `template`: one of [`post`, `page`] right now

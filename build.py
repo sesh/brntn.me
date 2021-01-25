@@ -54,6 +54,10 @@ def load_post(fn):
         print(f"Missing published time for {fn}")
         return None
 
+    headers['permalink'] = "/" + headers['slug']
+    headers['published_formatted'] = datetime.fromisoformat(headers['published'].replace('Z', '')).strftime('%B %d, %Y')
+
+    print(headers['published_formatted'], headers['published'])
     return (headers, rendered)
 
 
@@ -63,13 +67,6 @@ def render_post(headers, content, *, build_dir):
     fn = build_dir / headers['slug']  # must be set
     fn.mkdir(parents=True, exist_ok=True)
     fn = fn / 'index.html'
-
-    if 'permalink' not in headers:
-        headers['permalink'] = str(fn).replace(str(build_dir), '')
-
-    if 'published' in headers:
-        published = headers['published']
-        headers['published_formatted'] = datetime.fromisoformat(published.replace('Z', '')).strftime('%B %m, %Y')
 
     with open(fn, 'w') as f:
         if template == 'page':
@@ -119,7 +116,7 @@ def blog():
     shutil.copytree(theme_dir / 'static', build_dir / 'static', dirs_exist_ok=True)
 
     # load all posts, filter out pad posts and sort by published date
-    posts = [load_post(f) for f in glob.glob(str(content_dir / '*.md'))]
+    posts = [load_post(str(f)) for f in content_dir.rglob('*.md')]
     posts = [p for p in posts if p]
     posts = sorted(posts, key=lambda p: p[0]['published'], reverse=True)
 

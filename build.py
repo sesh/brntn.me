@@ -107,8 +107,10 @@ def blog():
     public_dir = p / 'public'
     theme_dir = p / 'theme'
 
+
     # remove the build directory
-    shutil.rmtree(build_dir)
+    if build_dir.exists():
+        shutil.rmtree(build_dir)
 
     # public: copy public files to the build directory
     shutil.copytree(public_dir, build_dir)

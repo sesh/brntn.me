@@ -112,3 +112,12 @@ header {
 header nav a {
     margin-left: 1em;
 }
+
+/*
+  Pagination
+*/
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}

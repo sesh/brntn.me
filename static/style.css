@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #212529;
+    -ms-text-size-adjust: 100%;
+    /* #fix-resize */
+    -webkit-text-size-adjust: 100%;
+    /* #fix-resize */
+}
+
+pre, code {
+    font-family: monospace, monospace;
+    font-size: 0.9em;
+    color: #1864ab;
+    background-color: #e9ecef;
+}
+
+pre {
+    background-color: #e9ecef;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+h1 {
+    font-size: 1.6em;
+    margin: 0.67em 0;
+}
+
+mark {
+    background-color: #ffec99;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+
+/*
+  Images:
+    - max-width 100%
+    - #fix-border: remove border from images inside <a> on old IE
+  */
+
+img {
+    max-width: 100%;
+    border: 0;
+}
+
+
+/*
+  Links:
+    - Nicer default link, hover and visited colors from open-color
+    - #fix-links-ie: remove transparent background in IE 10
+    - make links bold
+    - remove underline, because I'm a monster
+  */
+
+a, a:visited {
+    color: #1c7ed6;
+    background-color: transparent;
+    /* #fix-links-ie */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #339af0;
+}
+
+
+/*
+  Layout:
+    - remove all margins from <body>
+    - header, main, footer get a small margin and max-width
+    - blockquote gets a left border
+  */
+
+body {
+    margin: 0;
+}
+
+header, main, footer {
+    max-width: 48em;
+    margin: 2% 5%;
+}
+
+blockquote {
+    border-left: 6px solid #e9ecef;
+    margin-left: 0;
+    padding: 0 0 0 2em;
+}
+
+article {
+    margin-bottom: 4em;
+}
+
+/*
+  Header
+  */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    margin-left: 1em;
+}

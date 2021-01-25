@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <title>Brenton Cleeland</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Brenton Cleeland</h1>
+        <nav>
+            <a href="/posts/">Posts</a>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main>
+    <article class="h-entry">
+    <a href="/2017/10/14/50/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2017-10-14T22:37:16.203Z">October 10, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <h1>Learning Django URL Patterns by Example</h1>
+<p><em>FYI: I built a <a href="https:/sesh.github.io/urlconf/">tiny tool for creating URLconf entries</a> that you can use and contribute to</em></p>
+<p>One of the more complicated parts of learning Django is learning to write URL patterns. This is primarily because the regular expressions used quickly start to look complicated and are not covered in beginner Django courses or tutorials.</p>
+<p>The good news is that they're not all that complicated and there are a number of patterns that are easy to reuse once you start to recognise them.</p>
+<h3>The URL function</h3>
+<pre><code>urlpatterns = [
+    url(r'^index/$', index_view, name='main-view'),
+]
+</code></pre>
+<p>Django's <code>url</code> function is the core of how this all works. You need to pass it two arguments: the regular expression to match and the view.</p>
+<p>There are two additional optional keyword arguments: <code>kwargs</code> for passing options to your view, and <code>name</code> for naming your URL. You should always try to name your views.</p>
+<p>Additionally the <code>url</code> function is overloaded with support for includes. You can use the <code>include</code> function to include another module with a <code>urlpatterns</code> list in it.</p>
+<pre><code>urlpatterns = [
+    url(r'^posts/$', include('posts.urls')),
+]
+</code></pre>
+<p>When Django attempts to find the view for a given path it will look through the list named <code>urlpatterns</code> in your default URLconf (specified in your settings). It's normally a good idea to leave this next to your <code>settings.py</code> file and include other URLconfs from your apps.</p>
+<h3>Matching strings and paths</h3>
+<p>So we're already seen two examples of matching &quot;exact&quot; paths. The &quot;regular expression&quot; in this case is nothing more than a string that represents that URL path.</p>
+<pre><code>url(r'^robots.txt$', ...),
+</code></pre>
+<p>Two things that you might notice in the above expression:</p>
+<ul>
+<li><code>^</code> in a regular expression means &quot;this is the start&quot;</li>
+<li><code>$</code> in a regular expression means &quot;this is the end&quot;</li>
+</ul>
+<p>By leaving off the <code>$</code> at the end you can match anything that <em>starts with</em> a specific string. This is particularly useful with includes.</p>
+<pre><code>url(r'^admin/', include(...))
+</code></pre>
+<h3>Matching the primary key</h3>
+<p>As soon as you start writing your Django app you're going to quickly run into wanting create a path for a specific instance of a model. We can achieve this by matching the primary key (or pk) of the object in the path.</p>
+<p>By default PKs in Django are positive integers. If that's the case for your project matching the object is a simple as using the <code>0-9</code> range.</p>
+<pre><code>url(r'^posts/(?P[0-9]+)/$', ...),
+</code></pre>
+<p>The <code>(?P ... )</code> component creates a <em>group</em> within our regular expression. These groups will be passed to our view as arguments.</p>
+<p>The <code>[0-9]</code> creates a group of characters that will be matched, and the <code>+</code> means that we'll match one or more of these characters.</p>
+<p>We can go a step further and name those groups. You should consider naming groups within your URL patterns as best practice. Once you name the group it will be passed to your view as a keyword argument.</p>
+<pre><code># URL pattern for matching Django primary keys
+url(r'^posts/(?P&lt;pk&gt;[0-9]+)/$', ...)
+</code></pre>
+<h3>Matching Django's slug field</h3>
+<p>Often we have other unique fields on our model, such as Django's slug field. Just like the primary key, it's useful to be able to look up an object using this value.</p>
+<p>To match the slug we introduce a new regular expression element: <code>\w</code> which is a shortcut meaning &quot;word character&quot;. This is a shortcut for the ranges <code>A-Z</code>, <code>a-z</code>, <code>0-9</code> and the <code>_</code> character. Django also allows the <code>-</code> character in slug fields so we need to add that too.</p>
+<pre><code># URL pattern for matching Django slug fields
+url(r'^posts/(?P&lt;slug&gt;[-\w]+)/$', ...)
+</code></pre>
+<h3>Matching dates and other fixed-length numbers</h3>
+<p>Django is used to create CMS's a lot (heck, that's how it all started, right?) so matching years and other dates has always been a common use case.</p>
+<p>Up until now we've used the <code>+</code> character to represent &quot;one or more matches&quot; of the patterns we've created. Regular expressions also have the concept of a fixed length match by using the <code>{4}</code> syntax. <code>{4}</code> would match the preceding pattern four times.</p>
+<pre><code># URL pattern for matching four digit years
+url(r'^archive/(?P&lt;year&gt;[0-9]{4})/$', ...)
+</code></pre>
+<p>We can use that pattern to create matches for other date formats such as the ISO date format or the simple year, month, day combination often found on news sites.</p>
+<pre><code># URL pattern for matching ISO date format
+url(r'^archive/(?P&lt;year&gt;[0-9]{4})/$', ...)
+
+# URL pattern for matching /year/month/day/
+url(r'^articles/(?P&lt;year&gt;[0-9]{4})/(?P&lt;month&gt;[0-9]{2})/(?P&lt;day&gt;[0-9]{2})/$', ...)
+</code></pre>
+<h3>Getting fancy and matching a hexadecimal colour</h3>
+<p>We can combine some of the information we've learned to match more complicated patterns. Hexadecimal colours are 6 characters long, and contain characters from 0-F. That is <code>0-9</code> and <code>A-F</code>.</p>
+<pre><code># URL pattern for matching a hexadecimal colour
+url(r'^colour/(?P&lt;colour&gt;[0-9A-F]{6})/$', ...)
+</code></pre>
+<p>If we want to get really smart we can introduce the &quot;optional&quot; operator <code>?</code> to mark the &quot;u&quot; in colour as optional. We're all about being welcoming to our American friends here!</p>
+<pre><code># URL pattern for matching both colour and color
+url(r'^colo(u)?r/(?P&lt;colour&gt;[0-9A-F]{6})/$', ...)
+</code></pre>
+<p>We've used the length selector there to say that we want exactly six matches of the previous pattern. It also supports adding upper and lower limits using the <code>{&lt;lower&gt;,&lt;upper&gt;}</code> format.</p>
+<pre><code># URL pattern for matching 3-6 character hexidecimal paths
+url(r'^colour/(?P&lt;colour&gt;[0-9A-F]{3,6})/$', ...)
+</code></pre>
+<p>Those aren't all valid colours though! In CSS valid colours have to have either 3 or 6 hexadecimal characters. To do that we have to create two groups separated by the <code>|</code> character.</p>
+<pre><code># URL pattern for matching 3 and 6 character hexadecimal colours
+url(r'^colour/(?P&lt;colour&gt;([0-9A-F]{3}|[0-9A-F]{6}))/$', ...)
+</code></pre>
+<p>This allows us to match a three character hex string (like &quot;EEE&quot;) or a six character one (like &quot;AE44AE&quot;).</p>
+<h3>Matching optional groups in our URLs</h3>
+<p>Finally lets look at marking whole groups within our URL as optional. Perhaps we want to support looking up a post by it's primary key and optionally including the slug in the URL. Nice URLs are hip and cool after all.</p>
+<p>Just like making an individual character optional we can mark whole groups as optional with the <code>?</code> syntax.</p>
+<pre><code># URL pattern to match post with optional slug
+url(r'^colour/(?P&lt;pk&gt;[0-9]+)(?:/(?P&lt;slug&gt;[-\w]+))?/$')
+</code></pre>
+<p>The above will support using both /colour/123 and /colour/123/lush-pink as the URL path.</p>
+<h3>Keep Learning!</h3>
+<p>I hope the above introduction has given you a little more insight into the power that is Django's URL parsing. As always: there's loads more information in the Django <a href="https://docs.djangoproject.com/en/1.11/topics/http/urls/">documentation</a>.</p>
+<p>Feel free to post any questions on <a href="https://twitter.com/sesh">Twitter</a> :)</p>
+
+    </div>
+</article>
+    </main>
+</body>
+</html>

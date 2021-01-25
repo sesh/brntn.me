@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <title>Brenton Cleeland</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Brenton Cleeland</h1>
+        <nav>
+            <a href="/posts/">Posts</a>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main>
+    <article class="h-entry">
+    <a href="/2018/02/06/64/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2018-02-06T01:38:56.275Z">February 02, 2018</time>
+    </a>
+
+    <div class="e-content">
+        <p>Just checked in and the tiny cricket game I made had almost 1,500 page views in a week. Almost entirely driven by /r/WebGames traffic.</p>
+<p><img src="https://cdn.filestackcontent.com/VaOQOZrtTZaBNDW39Jer" alt="" /></p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2018/02/04/62/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2018-02-04T02:45:36.631Z">February 02, 2018</time>
+    </a>
+
+    <div class="e-content">
+        <h3>3 problems I've had with the ANNE Pro 60% keyboard layout</h3>
+<p>I recently picked up the <a href="https://www.amazon.com/Mechanical-Pro-Bluetooth-compatible-Smartphone/dp/B06XW87X9D">ANNED Pro 60% bluetooth keyboard</a>. After a week of use, I have a few complaints.</p>
+<ol>
+<li>fn+cmd locks the cmd key into &quot;off&quot; mode. This makes already awkward MacOS shortcuts like cmd+option+left to switch tabs next to impossible to do without accidentally breaking cmd. <em>Fix: use cmd+shift+[ instead</em>.</li>
+<li>Having fn on the right only makes using your right hand for arrow keys hard. I got really used to being able to do this on the Kogan ten keyless keyboard.</li>
+<li>Hitting ~ (something I use a lot) is a really awkward combination of fn+shift+esc. Not really sure how this can be improved - perhaps I'll try mapping ~ to caps lock.</li>
+</ol>
+<p>Otherwise, ignoring some bluetooth hiccups, I'm loving using this keyboard.</p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2018/02/04/61/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2018-02-04T01:10:43.925Z">February 02, 2018</time>
+    </a>
+
+    <div class="e-content">
+        <p>Submitted talk and workshop proposals for DjangoCon EU in late May. Kind of strange to think that my first major conference talk could be in another country! Thanks for the encouragement @m_holtermann :p.</p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2018/01/28/59/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2018-01-28T06:59:45.598Z">January 01, 2018</time>
+    </a>
+
+    <div class="e-content">
+        <p>Slides from my presentation at MelbDjango in January 2018 on the changes to URLs in Django 2.0.</p>
+<h2>Django 2.0</h2>
+<ul>
+<li>Released December, 2017</li>
+<li>Major features:
+<ul>
+<li>Only supports Python 3.4 and above</li>
+<li>Mobile-friendly admin interface</li>
+<li><strong>Simplified URL routing syntax</strong></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>The old way</h2>
+<pre><code class="language-python">from django.conf.urls import url
+
+urlpatterns = [
+  url(r'^articles/(?P&lt;year&gt;[0-9]{4})/$', views.year_archive),
+]
+</code></pre>
+<ul>
+<li>Required users to understand regular expressions</li>
+<li>Passes URL parameters as strings to your views</li>
+</ul>
+<hr />
+<h3>The new way</h3>
+<pre><code class="language-python">from django.urls import path
+
+urlpatterns = [
+  path('articles/&lt;int:year&gt;/', views.year_archive)
+]
+</code></pre>
+<ul>
+<li>Simpler for new users (no more regex!)</li>
+<li>Handles coercion into the designated type</li>
+<li>Can be extended with ... functions</li>
+</ul>
+<hr />
+<h3>And you can still regex</h3>
+<pre><code class="language-python">from django.urls import re_path
+
+urlpatterns = [
+  # support date paths: /date/2018-01-18
+  re_path(r'^date/(?P&lt;year&gt;[0-9]{4})-(?P&lt;month&gt;[0-9]{2})-(?P&lt;day&gt;[0-9]{2})$', views.day_archive)
+]
+</code></pre>
+<ul>
+<li>You can use <code>django.urls.re_path</code> to add regex-based URLs</li>
+<li>(you can also just keep using the old <code>url</code> function)</li>
+</ul>
+<hr />
+<h3>The built in converters</h3>
+<p><code>int</code>: Matches zero or any positive integer. Returns an int.</p>
+<p>Old:</p>
+<pre><code class="language-python">url(r'^posts/(?P&lt;pk&gt;[0-9]+)/$', views.post)
+</code></pre>
+<p>New:</p>
+<pre><code class="language-python">path('posts/&lt;int:pk&gt;/', views.post)
+</code></pre>
+<hr />
+<h3>The built in converters</h3>
+<p><code>str</code>: Matches any non-empty string, excluding the path separator, '/'</p>
+<p>Old:</p>
+<pre><code class="language-python">url(r'^define/(?P&lt;word&gt;[^/]+)/$', views.define)
+</code></pre>
+<p>New:</p>
+<pre><code class="language-python">path('posts/&lt;str:word&gt;/', views.define)
+</code></pre>
+<p>or</p>
+<pre><code class="language-python">path('posts/&lt;word&gt;/', views.define)
+</code></pre>
+<hr />
+<h3>The built in converters</h3>
+<p><code>uuid</code>: Matches a formatted UUID.</p>
+<p>Old:</p>
+<pre><code class="language-python">url(r'^(?P&lt;pk&gt;\b[0-9a-f]{8}\b(-\b[0-9a-f]{4}\b){3}-\b[0-9a-f]{12}\b)$', views.post)
+</code></pre>
+<p>New:</p>
+<pre><code class="language-python">path('&lt;uuid:pk&gt;/', views.post)
+</code></pre>
+<hr />
+<h3>The built in converters</h3>
+<p><code>slug</code>: Matches slugs compatible with <code>SlugField</code></p>
+<p>Old:</p>
+<pre><code class="language-python">url(r'^posts/(?P&lt;post_slug&gt;[-\w]+)/$', views.post)
+</code></pre>
+<p>New:</p>
+<pre><code class="language-python">path('posts/&lt;slug:post_slug&gt;/', views.post)
+</code></pre>
+<hr />
+<h3>The built in converters</h3>
+<p><code>path</code>: Matches any non-empty string, including the path separator, '/'.</p>
+<p>Old:</p>
+<pre><code class="language-python">url(r'^url/(?P&lt;url&gt;.+)/$', views.url_info)
+</code></pre>
+<p>New:</p>
+<pre><code class="language-python">path('url/&lt;path:url&gt;', views.url_info)
+</code></pre>
+<hr />
+<h3>Adding your own converter</h3>
+<ul>
+<li>
+<p>Register custom converters with <code>django.urls.register_converter</code></p>
+<ul>
+<li>The documentation suggests doing this in your <code>urls.py</code></li>
+</ul>
+</li>
+<li>
+<p><code>register_converter</code> takes two arguments:</p>
+<ul>
+<li>A Converter</li>
+<li>The &quot;type name&quot; used in the URL</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>isodate converter</h3>
+<pre><code class="language-python">import datetime
+from django.urls import register_converter
+
+class IsoDateConverter:
+    regex = '\d{4}-\d{2}-\d{2}'
+
+    def to_python(self, value):
+        return datetime.datetime.strptime(value, '%Y-%m-%d').date()
+
+    def to_url(self, value):
+        return str(value)
+
+
+register_converter(IsoDateConverter, 'isodate')
+</code></pre>
+<hr />
+<h3>Custom conversion functions</h3>
+<ul>
+<li>The result of <code>to_python</code> will be passed to your view</li>
+<li>If an exception is raised, the next URL pattern will be used</li>
+<li>Simple to test:</li>
+</ul>
+<pre><code class="language-python">def test_isodate(self):
+    response = self.client.get('/url/2018-01-18/').json()
+    self.assertEqual('isodate', response['url_name'])
+</code></pre>
+<hr />
+<h3>That's it!</h3>
+<ul>
+<li>Follow me on Twitter: @sesh</li>
+<li>Talk will be on https://brntn.me</li>
+<li>I work at Thoughtworks now (it's great)</li>
+</ul>
+<hr />
+<h3>Resources</h3>
+<ul>
+<li>https://docs.djangoproject.com/en/2.0/releases/2.0/</li>
+<li>https://docs.djangoproject.com/en/2.0/topics/http/urls/</li>
+<li>https://docs.djangoproject.com/en/2.0/topics/http/urls/#how-django-processes-a-request</li>
+<li>https://docs.djangoproject.com/en/2.0/ref/urls/#django.urls.path</li>
+</ul>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2018/01/02/57/index.html" class="u-url">
+        <time class="post-date dt-published" datetime="2018-01-02T22:08:33.460Z">January 01, 2018</time>
+    </a>
+
+    <div class="e-content">
+        <p>You can't remove the link between FB and Spotify if you signed up to Spotify with FB. Had to delete my account and create a new one. Goodbye everything my Discover Weekly has learned about me :(</p>
+
+    </div>
+</article>
+
+
+    </main>
+</body>
+</html>

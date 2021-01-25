@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <title>Brenton Cleeland</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Brenton Cleeland</h1>
+        <nav>
+            <a href="/posts/">Posts</a>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main>
+    <article class="h-entry">
+    <a href="/2017/03/20/11" class="u-url">
+        <time class="post-date dt-published" datetime="2017-03-20T01:07:15.632Z">March 20, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <p><img src="https://cdn.filestackcontent.com/UWjVoxM0TvClhVz7FTGF" alt="" /></p>
+<p>Quick and dirty <a href="https://getbitbar.com/">bitbar</a> script to show the current temperature and forecast in Melbourne.</p>
+<pre><code class="language-python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+
+response = requests.get('http://www.bom.gov.au')
+soup = BeautifulSoup(response.content, 'html.parser')
+
+capitals = soup.find_all(attrs={'class': 'capital'})
+melbourne = capitals[1]
+now = melbourne.find(attrs={'class': 'now'})
+temp = now.findChild().text.replace('°', '')
+
+max_temp = melbourne.find_all(attrs={'class': 'max'})[-1].text.replace('°', '')
+
+print(temp + 'C')
+print('---')
+print(melbourne.find('h3').text + ': ' + melbourne.find(attrs={'class': 'precis'}).text)
+print('Currently: {}. Max: {}'.format(temp, max_temp))
+print(melbourne.find(attrs={'class': 'wind'}).text)
+print('---')
+print('BOM Forecast|href=http://www.bom.gov.au/vic/forecasts/melbourne.shtml')
+print('BayWX Chart|href=http://www.baywx.com.au/melbtemp2.html')
+</code></pre>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2017/03/18/10" class="u-url">
+        <time class="post-date dt-published" datetime="2017-03-18T23:44:21.052Z">March 18, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <p>Having way too much fun building &quot;multi page webapps&quot; in my spare time. Bring back fast page loads (and reloads).</p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2017/03/18/8" class="u-url">
+        <time class="post-date dt-published" datetime="2017-03-18T03:23:41.909Z">March 18, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <p>On Tuesday I spoke to <a href="https://twitter.com/Double_Days">Bonnie</a>'s Design Infidelity class about code. Slides are open source and <a href="https://sesh.github.io/boncls/">on Github</a></p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2017/03/14/6" class="u-url">
+        <time class="post-date dt-published" datetime="2017-03-14T05:50:14.779Z">March 14, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <p>Had a great time hanging out with <a href="https://twitter.com/Double_Days">Bonnie's</a> class this morning and teaching them a little about <a href="https://github.com/sesh/boncls">being a programmer</a>.</p>
+<p>Re-hashed the slides from 2015 and added some <a href="https://glitch.com">Glitch</a> inspired content around remixing.</p>
+
+    </div>
+</article>
+
+<article class="h-entry">
+    <a href="/2017/02/28/5" class="u-url">
+        <time class="post-date dt-published" datetime="2017-02-28T22:05:48.048Z">February 28, 2017</time>
+    </a>
+
+    <div class="e-content">
+        <p>Small <a href="https://github.com/sesh/django-up">django-up</a> update: nginx has been updated to use gzip for the <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html#compressed-content-cloudfront-file-types">same list of Content-Types</a> that Amazon uses on CloudFront.</p>
+
+    </div>
+</article>
+
+
+    </main>
+</body>
+</html>

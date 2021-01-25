@@ -11,7 +11,10 @@ import commonmark
 PAGE_TEMPLATE = open("theme/page.html", "r").read()
 POST_TEMPLATE = open("theme/post.html", "r").read()
 
-STATIC_SITES = [("/calendar/", "https://github.com/sesh/calendar.git")]
+STATIC_SITES = [
+    ("/calendar/", "https://github.com/sesh/calendar.git"),
+    ("/runcalc/", "https://api.glitch.com/git/runcalc")
+]
 
 
 def chunks(lst, n):

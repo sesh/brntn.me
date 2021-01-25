@@ -108,6 +108,7 @@ def render_post_list(posts, *, build_dir):
 def clone_repo(repo, path):
     output = subprocess.run(["git", "clone", repo, path], check=True)
     print(output)
+    (path / '.git').rmdir()
 
 
 def blog():

@@ -2,6 +2,10 @@
 <!-- template: page -->
 <!-- published: 2021-01-01T00:00:00.000Z -->
 
+Hi there, my name is <a href="mailto:brenton@brntn.me">Brenton Cleeland</a> and I'm a Lead Engineer at [Coles](https://www.coles.com.au) working on customer identity.
+Previously I've worked as a developer at Thoughtworks and Common Code.
+
+
 ### Posts, Projects & Talks
 
 A smattering of content I've created over the last few years.

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <!-- Document Title & Description -->
+        <title>Overnight Riding Checklist – Lightweight Bike Camping</title>
+
+        <!-- Mobile Screen Resizing -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/brntn.css" media="screen" title="no title" charset="utf-8">
+
+        <style media="screen">
+        .item {
+          display: block;
+        }
+        .strikeout {
+          text-decoration: line-through!important;
+        }
+        </style>
+    </head>
+
+    <body>
+        <section class="container">
+          <h3>Overnight Riding Checklist</h3>
+
+          Brenton's three(-ish) season, overnight bike camping checklist.
+
+          <p class="filters">
+            Filters: <a href="#" data-hide="cooking">cooking</a>,
+                     <a href="#" data-hide="coffee">coffee</a>,
+                     <a href="#" data-hide="breakfast">breakfast</a>,
+                     <a href="#" data-hide="dinner">dinner</a>,
+                     <a href="#" data-hide="camping">camping</a>,
+                     <a href="#" data-hide="casual">casual riding gear</a>
+          </p>
+        </section>
+
+        <section class="container no-coffee">
+          <p class="seriously">No coffee? Are you insane?</p>
+        </section>
+
+        <section class="container">
+          <h4 class="camping">Sleeping Gear</h4>
+          <span class="item camping">[ ] Tent (currently: MSR Hubba Hubba)</span>
+          <span class="item camping">[ ] Sleeping Bag</span>
+          <span class="item camping">[ ] Sleeping Mat (currently: Katmandu Hike 38)</span>
+          <span class="item camping">[ ] (optional) Inflatable Pillow or stuff sack and hoody</span>
+
+
+          <h4 class="cooking">Cooking (optional)</h4>
+          <span class="item cooking">[ ] Trangia</span>
+          <span class="item cooking">[ ] Methylated Spirits</span>
+          <span class="item cooking">[ ] Matches</span>
+
+
+          <h4>Food</h4>
+          <span class="item">[ ] Clif Bars (or similar energy bars)</span>
+          <span class="item dinner">[ ] Tuna &amp; Beans (or similar dense energy)</span>
+          <span class="item breakfast">[ ] Oats / Muesili &amp; Long Life Milk</span>
+          <span class="item breakfast dinner">[ ] Spoon / Fork / Knife</span>
+          <span class="item coffee">[ ] KeepCup</span>
+          <span class="item">[ ] Snacks</span>
+
+
+          <h4 class="coffee">Coffee</h4>
+          <span class="item coffee">[ ] Aeropress</span>
+          <span class="item coffee">[ ] Grinder</span>
+          <span class="item coffee">[ ] Aeropress Filters</span>
+          <span class="item coffee">[ ] Coffee Beans</span>
+
+
+          <h4>Clothing</h4>
+          <span class="item">[ ] Waterproof Jacket</span>
+          <span class="item casual">[ ] Riding shorts</span>
+          <span class="item casual">[ ] Spare t-shirts for riding</span>
+          <span class="item no-casual">[ ] Cycling jersey</span>
+          <span class="item no-casual">[ ] Bibshorts</span>
+          <span class="item">[ ] Jeans or Boardshorts</span>
+          <span class="item">[ ] Underwear (preferably merino)</span>
+          <span class="item">[ ] Socks for each day</span>
+          <span class="item">[ ] (Winter) Hoodie or warm jacket</span>
+
+
+          <h4>Tools</h4>
+          <span class="item">[ ] Spare Tubes</span>
+          <span class="item">[ ] Mini-pump</span>
+          <span class="item">[ ] Multitool</span>
+          <span class="item">[ ] Chain Breaker</span>
+          <span class="item">[ ] Tyre Boot</span>
+          <span class="item">[ ] Tyre Lever</span>
+          <span class="item">[ ] Occy Straps</span>
+
+
+          <h4>On Bike</h4>
+          <span class="item">[ ] Lights</span>
+          <span class="item">[ ] Two Large Drink Bottles</span>
+
+
+          <h4>Hygene</h4>
+          <span class="item">[ ] Toothbrush / Toothpaste</span>
+          <span class="item">[ ] Baby Wipes</span>
+        </section>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-22987901-1', 'brntn.me');
+            ga('send', 'pageview');
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script charset="utf-8">
+          $('.item').click(function() {
+            if ( $(this).text().indexOf('✓') != -1) {
+              $(this).text($(this).text().replace('[✓]', '[ ]'));
+            } else {
+              $(this).text($(this).text().replace('[ ]', '[✓]'));
+            }
+          });
+
+          function apply_filters() {
+            $('.filters a').each(function() {
+              var class_name = $(this).data('hide');
+              if ($(this).hasClass('strikeout')) {
+                $('.' + class_name).hide();
+                $('.no-' + class_name).show();
+              }
+            });
+            $('.filters a').each(function() {
+              var class_name = $(this).data('hide');
+              if (!$(this).hasClass('strikeout')) {
+                $('.' + class_name).show();
+                $('.no-' + class_name).hide();
+              }
+            });
+          }
+
+          $('.filters a').click(function() {
+            $(this).toggleClass('strikeout');
+            apply_filters();
+          });
+
+          $('.filters a').each(function() {
+            var class_name = $(this).data('hide');
+            $('.no-' + class_name).hide();
+          })
+        </script>
+    </body>
+</html>

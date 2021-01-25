@@ -114,7 +114,7 @@ def blog():
     shutil.copytree(public_dir, build_dir)
 
     # static: copy static files from the theme
-    shutil.copytree(theme_dir / 'static', build_dir / 'static')
+    shutil.copytree(theme_dir / 'static', build_dir / 'static', dirs_exist_ok=True)
 
     # load all posts, filter out pad posts and sort by published date
     posts = [load_post(f) for f in glob.glob(str(content_dir / '*.md'))]

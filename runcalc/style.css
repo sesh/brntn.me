@@ -1,0 +1,114 @@
+/* CSS files add styling rules to your content */
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  background-color: #212529;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.calculator {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+#results {
+  color: #868e96;
+  text-align: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#results li {
+  padding: 0.8em 0.3em;
+  border-top: 1px solid #495057;
+}
+
+.input {
+  background-color: #868e96;
+  width: 100%;
+  padding: 0.3em;
+  border: 1px solid #212529;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#input {
+  line-height: 2.2em;
+  font-size: 1.8em;
+}
+
+#mode {
+  background-color: #343a40;
+  color: #f1f3f5;
+  border-radius: 4px;
+  padding: 0.6em 0.9em;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row div {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.4em;
+  height: 64px;
+  margin: 1px;
+}
+
+.row div.double {
+  width: 50.5%;
+}
+
+.row div.in {
+  background-color: #495057;
+  color: #f1f3f5;
+}
+
+.row div.convert {
+  background-color: #f59f00;
+  color: #f1f3f5;
+  font-size: 1.1em;
+}
+
+.row div.mode {
+  background-color: #228be6;
+  color: #f1f3f5;
+  font-size: 1.1em;
+}
+
+.row div.special {
+  background-color: #f03e3e;
+  color: #f1f3f5;
+  font-size: 1.1em;
+}
+
+.row div.dist {
+  background-color: #7950f2;
+  color: #f1f3f5;
+  font-size: 1.1em;
+}
+
+.row div.backspace {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #ff8787;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmMWYzZjUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49ImJldmVsIj48cGF0aCBkPSJNMjEgNEg4bC03IDggNyA4aDEzYTIgMiAwIDAgMCAyLTJWNmEyIDIgMCAwIDAtMi0yeiI+PC9wYXRoPjxsaW5lIHgxPSIxOCIgeTE9IjkiIHgyPSIxMiIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjEyIiB5MT0iOSIgeDI9IjE4IiB5Mj0iMTUiPjwvbGluZT48L3N2Zz4=")
+}
+
+.row div:active {
+  opacity: 0.8;o]

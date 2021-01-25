@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="application-name" content="RunCalc">
+    
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="https://cdn.glitch.com/caf435f3-452b-40b3-99f0-a6fea4eede69%2FE884B074-D221-4A34-9081-1AFCEA77513E.png?v=1600685724809">
+    
+    <title>Running Calculator</title>
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>  
+  <body ontouchstart="">
+    <main class="calculator">
+      <ul id="results"></ul>
+      <div class="input">
+        <div id="mode">
+          Metric Pace
+        </div>
+        <div id="input">
+          0
+        </div>
+      </div>
+      <div class="row">
+        <div data-distance="100" class="dist">100m</div>
+        <div data-distance="400" class="dist">400m</div>
+        <div data-distance="800" class="dist">800m</div>
+        <div data-distance="1609" class="dist">Mile</div>
+      </div>
+      <div class="row">
+        <div data-distance="5000" class="dist">5km</div>
+        <div data-distance="10000" class="dist">10km</div>
+        <div data-distance="21100" class="dist">HM</div>
+        <div data-distance="42195" class="dist">Marathon</div>
+      </div>
+      <div class="row">
+        <div data-distance="50000" class="dist">50km</div>
+        <div data-distance="80470" class="dist">80mi</div>
+        <div data-distance="100000" class="dist">100km</div>
+        <div data-special="clear" class="special">C</div>
+      </div>
+      <div class="row">
+        <div data-in="7" class="in">7</div>
+        <div data-in="8" class="in">8</div>
+        <div data-in="9" class="in">9</div>
+        <div data-convert="km/h" class="convert">km/h</div>
+      </div>
+      <div class="row">
+        <div data-in="4" class="in">4</div>
+        <div data-in="5" class="in">5</div>
+        <div data-in="6" class="in">6</div>
+        <div data-convert="mins/mi" class="convert">mins/mi</div>
+      </div>
+      <div class="row">
+        <div data-in="1" class="in">1</div>
+        <div data-in="2" class="in">2</div>
+        <div data-in="3" class="in">3</div>
+        <div data-convert="mins/km" class="convert">mins/km</div>
+      </div>
+      <div class="row">
+        <div data-in="0" class="in double">0</div>
+        <div data-in=":" class="in">:</div>
+        <div data-special="backspace" class="special backspace"></div>
+      </div>
+    </main>
+  </body>
+</html>

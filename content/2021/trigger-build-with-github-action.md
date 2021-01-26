@@ -54,3 +54,5 @@ jobs:
       - name: Notify parent repo
         run: http post https://api.github.com/repos/<<YOUR_PARENT_REPO>>/dispatches "Authorization:token ${{ secrets.NOTIFY_TOKEN }}" event_type=build --ignore-stdin
 ```
+
+And that's it! When your `child-repo` actions run (and we have it set to run on all pushes) it will trigger a build in the parent repo.

@@ -13,7 +13,8 @@ POST_TEMPLATE = open("theme/post.html", "r").read()
 
 STATIC_SITES = [
     ("/calendar/", "https://github.com/sesh/calendar.git"),
-    ("/runcalc/", "https://api.glitch.com/git/runcalc")
+    ("/runcalc/", "https://api.glitch.com/git/runcalc"),
+    ("/scratchpad/", "https://github.com/sesh/scratchpad.git")
 ]
 
 

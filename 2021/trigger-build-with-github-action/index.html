@@ -27,7 +27,7 @@
 
     <div class="e-content">
         <h1>Building brntn.me when another Github Repo changes using Github Actions</h1>
-<p>The repository that builds my website (<a href="https://github.com/sesh/brntn.me">sesh/brntn.me</a>) pulls in content from a number of other repositories. I wanted my site to automatically rebuild any time one of those other repositories is updated.</p>
+<p>The repository that builds my website (<a href="https://github.com/sesh/brntn.me">sesh/brntn.me</a>) pulls in content from other repositories. I wanted my site to automatically rebuild any time one of those other repositories is updated.</p>
 <p>There's a few examples of how to do this out there, but I wanted to jot down my quick and dirty solution in case it's helpful for anyone else.</p>
 <p>We're going to be working with two different repositories here, so lets name them to make things simpler:</p>
 <ul>
@@ -35,14 +35,15 @@
 <li><code>child-repo</code> is a second repository that should trigger the build of <code>parent-repo</code> on change.</li>
 </ul>
 <h2>Step One: Add <code>repository_dispatch</code> to your build Github Action for <code>parent-repo</code></h2>
-<p>In the <code>on</code> block of the Github Action that builds your project add a new <code>repository_dispatch</code> block. The <code>repository_dispatch</code> allows calls to the Github API to trigger your action. The <code>types</code> list is a list of dispatch types that will be used as triggers, in our case, we're going to add a single <code>build</code> type (we'll use this later).</p>
+<p>In the <code>on</code> block of the Github Action that builds your parent project add a new <code>repository_dispatch</code> block. The <code>repository_dispatch</code> allows calls to the Github API to trigger your action. The <code>types</code> list is a list of dispatch types that will be used as triggers, in our case, we're going to add a single <code>build</code> type (we'll use this later).</p>
 <pre><code class="language-yaml">on:
   repository_dispatch:
     types:
       - build
 </code></pre>
 <h2>Step Two: Generate a Personal Access Token with <code>repo</code> permissions</h2>
-<p>In order to trigger the build you'll need a Personal Access token that has the <code>repo</code> set of scopes. You can create this from the <a href="https://github.com/settings/tokens">Developer Settings</a> section of your Github settings.</p>
+<p>To trigger the build you'll need a Personal Access token that has the <code>repo</code> set of scopes. You can create this from the <a href="https://github.com/settings/tokens">Developer Settings</a> section of your Github settings.</p>
+<p>Once created, copy this and keep it safe.</p>
 <h2>Step Three: Add the secret to <code>child-repo</code></h2>
 <p>In the Secrets section of the <code>child-repo</code> settings add the token that you just generated as a Repository Secret. I've named mine <code>NOTIFY_TOKEN</code> (you'll need this in the next step).</p>
 <h2>Step Four: Add the Notify action to <code>child-repo</code></h2>

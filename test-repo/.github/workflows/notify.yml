@@ -16,3 +16,5 @@ jobs:
             --request POST \
             --data '{"event_type": "build"}' \
             https://api.github.com/repos/sesh/brntn.me/dispatches
+      - name: HTTPie
+        run: http google.com

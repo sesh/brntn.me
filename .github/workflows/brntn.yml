@@ -2,6 +2,9 @@ name: Deploy brntn.me
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - build 
   push:
     branches: [ main ]
   pull_request:

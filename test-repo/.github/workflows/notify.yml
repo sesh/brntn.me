@@ -9,12 +9,7 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-20.04
+    container: alpine/httpie
     steps:
-      - name: Trigger build of parent repo
-        run: |
-          curl -H "Authorization: token ${{secrets.NOTIFY_TOKEN}}" \
-            --request POST \
-            --data '{"event_type": "build"}' \
-            https://api.github.com/repos/sesh/brntn.me/dispatches
-      - name: HTTPie
-        run: http google.com
+      - name: Notify parent repo
+        run: http post https://api.github.com/repos/sesh/brntn.me/dispatches "Authorization:token ${{ secrets.NOTIFY_TOKEN }}" event_type=build --ignore-stdin

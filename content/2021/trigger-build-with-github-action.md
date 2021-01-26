@@ -3,7 +3,7 @@
 
 # Building brntn.me when another Github Repo changes using Github Actions
 
-The repository that builds my website ([sesh/brntn.me](https://github.com/sesh/brntn.me)) pulls in content from a number of other repositories. I wanted my site to automatically rebuild any time one of those other repositories is updated.
+The repository that builds my website ([sesh/brntn.me](https://github.com/sesh/brntn.me)) pulls in content from other repositories. I wanted my site to automatically rebuild any time one of those other repositories is updated.
 
 There's a few examples of how to do this out there, but I wanted to jot down my quick and dirty solution in case it's helpful for anyone else.
 
@@ -14,7 +14,7 @@ We're going to be working with two different repositories here, so lets name the
 
 ## Step One: Add `repository_dispatch` to your build Github Action for `parent-repo`
 
-In the `on` block of the Github Action that builds your project add a new `repository_dispatch` block. The `repository_dispatch` allows calls to the Github API to trigger your action. The `types` list is a list of dispatch types that will be used as triggers, in our case, we're going to add a single `build` type (we'll use this later).
+In the `on` block of the Github Action that builds your parent project add a new `repository_dispatch` block. The `repository_dispatch` allows calls to the Github API to trigger your action. The `types` list is a list of dispatch types that will be used as triggers, in our case, we're going to add a single `build` type (we'll use this later).
 
 ```yaml
 on:
@@ -25,7 +25,9 @@ on:
 
 ## Step Two: Generate a Personal Access Token with `repo` permissions
 
-In order to trigger the build you'll need a Personal Access token that has the `repo` set of scopes. You can create this from the [Developer Settings](https://github.com/settings/tokens) section of your Github settings.
+To trigger the build you'll need a Personal Access token that has the `repo` set of scopes. You can create this from the [Developer Settings](https://github.com/settings/tokens) section of your Github settings.
+
+Once created, copy this and keep it safe.
 
 ## Step Three: Add the secret to `child-repo`
 

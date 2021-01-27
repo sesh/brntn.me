@@ -1,5 +1,7 @@
 import os
 import glob
+import sys
+
 from pathlib import Path
 import shutil
 from datetime import datetime
@@ -152,11 +154,12 @@ def blog():
     shutil.copytree(theme_dir / "static", build_dir / "static", dirs_exist_ok=True)
 
     # clone static sites
-    for slug, repo in STATIC_SITES:
-        if slug.startswith("/"):
-            slug = slug[1:]
+    if '--skip-git' not in sys.argv:
+        for slug, repo in STATIC_SITES:
+            if slug.startswith("/"):
+                slug = slug[1:]
 
-        clone_repo(repo, build_dir / slug)
+            clone_repo(repo, build_dir / slug)
 
     # load all posts, filter out pad posts and sort by published date
     posts = [load_post(str(f)) for f in content_dir.rglob("*.md")]

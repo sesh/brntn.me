@@ -10,8 +10,8 @@ Previously I've worked as a developer at Thoughtworks and Common Code.
 
 A smattering of content I've created over the last few years.
 
-- (2020) [thttp](https://github.com/sesh/thttp) a tiny wrapper around urllib3 to make HTTP requests
 - (2020 & 2021) [Explore Your Bubble](https://exploreyourbubble.com/) helped folks in Melbourne get through our 5km lockdown
+- (2020) [thttp](https://github.com/sesh/thttp) a tiny wrapper around urllib3 to make HTTP requests
 - (2018) [Test Driven Development with Django](https://sesh.github.io/django-tdd/) workshop at DjangoCon Europe
 - (2018) [Introduction to Infrastructure on AWS](https://sesh.github.io/tw-aws-super-friyay/slides/#0) for Super Friday at Thoughtworks Melbourne
 - (2018) [User-Driven API Development](https://github.com/sesh/api-talk-march-2018/blob/master/User_APIs.md) talk at DevOps Melbourne

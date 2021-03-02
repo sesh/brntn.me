@@ -6,10 +6,12 @@ Hi there, my name is <a href="mailto:brenton@brntn.me">Brenton Cleeland</a> and 
 Previously I've worked as the Head of Software at SiSU Health and as a developer at Thoughtworks and Common Code.
 
 
+
 ### Posts, Projects & Talks
 
 A smattering of content I've created over the last few years.
 
+- (2021) [Building brntn.me when another Github Repo changes using Github Actions](https://brntn.me/2021/trigger-build-with-github-action/)
 - (2020 & 2021) [Explore Your Bubble](https://exploreyourbubble.com/) helped folks in Melbourne get through our 5km lockdown
 - (2020) [thttp](https://github.com/sesh/thttp) a tiny wrapper around urllib3 to make HTTP requests
 - (2018) [Test Driven Development with Django](https://sesh.github.io/django-tdd/) workshop at DjangoCon Europe

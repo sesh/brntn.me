@@ -6,6 +6,28 @@ Hi there, my name is <a href="mailto:brenton@brntn.me">Brenton Cleeland</a> and 
 Previously I've worked as the Head of Software at SiSU Health and as a developer at Thoughtworks and Common Code.
 
 
+### Projects
+
+A few projects that I'm using a lot at the moment.
+
+<div class="grid">
+    <div>
+        **Scratchpad**
+        
+        A place for temporary notes.
+    </div>
+    <div>
+        **Delta-V**
+        
+        Know when things change.
+    </div>
+    <div>
+        **Base HTML**
+        
+        A minimalist template to get you started.
+    </div>
+</div>
+
 
 ### Posts, Projects & Talks
 

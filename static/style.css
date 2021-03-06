@@ -121,3 +121,12 @@ header nav a {
     display: flex;
     justify-content: space-between;
 }
+
+/*
+  Flexbox Grid
+*/
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+}

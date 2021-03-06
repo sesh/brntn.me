@@ -130,3 +130,7 @@ header nav a {
   display: flex;
   justify-content: space-between;
 }
+
+.grid > * {
+  flex: 1 1 0px;
+}

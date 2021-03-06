@@ -10,17 +10,17 @@ Previously I've worked as the Head of Software at SiSU Health and as a developer
 
 A few projects that I'm using a lot at the moment.
 
-<div class='grid'>
+<div class="grid">
     <div>
-        <strong>Scratchpad</strong><br>
+        <strong><a href="https://brntn.me/scratchpad/">Scratchpad</a></strong><br>
         A place for temporary notes.
     </div>
     <div>
-        <strong>Delta-V</strong><br>
+        <strong><a href="https://delta-v.club">Delta-V</a></strong><br>
         Know when things change.
     </div>
     <div>
-        <strong>Base HTML</strong><br>
+        <strong><a href="https://basehtml.xyz">Base HTML</a></strong><br>
         A minimalist template to get you started.
     </div>
 </div>

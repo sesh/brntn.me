@@ -12,18 +12,15 @@ A few projects that I'm using a lot at the moment.
 
 <div class='grid'>
     <div>
-        **Scratchpad**
-        
+        <strong>Scratchpad</strong><br>
         A place for temporary notes.
     </div>
     <div>
-        **Delta-V**
-        
+        <strong>Delta-V</strong><br>
         Know when things change.
     </div>
     <div>
-        **Base HTML**
-        
+        <strong>Base HTML</strong><br>
         A minimalist template to get you started.
     </div>
 </div>

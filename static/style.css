@@ -99,6 +99,18 @@ article {
     margin-bottom: 4em;
 }
 
+article h2 {
+  font-size: 1.4em;
+}
+
+article h3 {
+  font-size: 1.3em;
+}
+
+article h4 {
+  font-size: 1.2em;
+}
+
 /*
   Header
   */

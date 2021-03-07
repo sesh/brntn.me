@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/sesh
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://brntn.me
+  * I am sesh (https://keybase.io/sesh) on keybase.
+  * I have a public key ASDIDvKTNOVGxRpQvFOCN_U8xSpFiZSHjZB0czJAx3AR_Qo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120c80ef29334e546c51a50bc538237f53cc52a458994878d9074733240c77011fd0a",
+      "host": "keybase.io",
+      "kid": "0120c80ef29334e546c51a50bc538237f53cc52a458994878d9074733240c77011fd0a",
+      "uid": "06aaf45b86fe47393fe512e213239500",
+      "username": "sesh"
+    },
+    "merkle_root": {
+      "ctime": 1615158917,
+      "hash": "dec6f42a479d580293ed7ba13b459f5d3fed7fedeed217af115ecb73085772777361a2ab60bf7e9b2ce52581615bd295c2c1e9b9c52fb58a996a26059604f904",
+      "hash_meta": "800be714953767b1bcfba99eb8cb9c5bbd07d7a4d6f1c899a7ca1b7c4e147dc6",
+      "seqno": 19315304
+    },
+    "service": {
+      "entropy": "XWLmVsHODJEJMzFF6impNnU9",
+      "hostname": "brntn.me",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.6.2"
+  },
+  "ctime": 1615158982,
+  "expire_in": 504576000,
+  "prev": "c0927936f742dd13ba67099411b14c49d31b83859ba1a88059890f1edd9fc275",
+  "seqno": 57,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgyA7ykzTlRsUaULxTgjf1PMUqRYmUh42QdHMyQMdwEf0Kp3BheWxvYWTESpcCOcQgwJJ5NvdC3RO6ZwmUEbFMSdMbg4WboaiAWYkPHt2fwnXEIG3zkOxL8EbUSfea7TwQrJUqfp3iRzCL9IRY976ByYBLAgHCo3NpZ8RAsZdgaUmEmofi1nTHbe42PuZSF0M0b24a0smUg9gZdCBJmnlMTbROAnuDWGHbHRK1DwBk+Vza5IWLkhJSk3ShA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIA2ch+Ga6X1SJaWA4jKY8q0x4hgIrtMErZeo8ZlsswOko3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/sesh
+
+==================================================================
